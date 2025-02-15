@@ -1,7 +1,7 @@
-import { DataTable } from "./data-table"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { DataTable } from "../data-table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 import {getData} from "@/lib/utils"
-import {columns} from "@/components/columns"
+import {columns} from "@/components/todo/columns"
 
 export default async function TaskList(){
     const data = await getData();
@@ -10,7 +10,7 @@ export default async function TaskList(){
         <Card>
             <CardHeader>
                 <CardTitle>Task List</CardTitle>
-                <CardDescription>List of tasks</CardDescription>
+                <CardDescription>Here's a list of your tasks</CardDescription>
             </CardHeader>
             <CardContent>
                 <DataTable columns={columns} data={data}/>

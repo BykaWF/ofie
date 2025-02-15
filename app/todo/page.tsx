@@ -1,4 +1,4 @@
-import TaskList from "@/components/task-list";
+import TaskList from "@/components/todo/task-list";
 
 export default function Page() {
     return (
