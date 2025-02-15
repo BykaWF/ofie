@@ -1,7 +1,18 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import {ArrowUp, ArrowRight, ArrowDown, Timer, CircleOff, CircleHelp, Circle, CircleCheckBig, MoreHorizontal,} from "lucide-react"
+import { 
+    ArrowUp, 
+    ArrowRight, 
+    ArrowDown, 
+    Timer,
+    CircleOff, 
+    CircleHelp, 
+    Circle, 
+    CircleCheckBig, 
+    MoreHorizontal,
+    ChevronsUpDown,
+} from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -33,7 +44,17 @@ export const columns : ColumnDef<Task>[] = [
     },
     {
         accessorKey:"label",
-        header: "Label",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                Label
+                <ChevronsUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+        },
         cell:({row}) =>{
             const label = row.getValue("label") as "Home" | "Work" | "Sport" | "Side-Project";
             const title = row.getValue("title") as string;
@@ -48,7 +69,17 @@ export const columns : ColumnDef<Task>[] = [
     },
     {
         accessorKey:"title",
-        header:"Title",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                Title
+                <ChevronsUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+        },
         cell:({row}) =>{
             const title = row.getValue("title") as string;
 
@@ -62,7 +93,17 @@ export const columns : ColumnDef<Task>[] = [
     },
     {
         accessorKey: "status",
-        header:"Status",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                Status
+                <ChevronsUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+        },
         cell:({row}) =>{
             const status = row.getValue("status") as "In Progress" | "Todo" | "Canceled" | "Done" | "Backlog"| undefined;
             const size = 16;
@@ -92,9 +133,21 @@ export const columns : ColumnDef<Task>[] = [
         }
 
     },
+    // TODO add priority logic to sort, like numbers behind
+    // https://ui.shadcn.com/docs/components/data-table#update-columns-definition-1
     {
         accessorKey:"priority",
-        header:"Priority",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                Priority
+                <ChevronsUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+        },
         cell: ({row}) => {
             const priority = row.getValue("priority") as "High" | "Medium" | "Low" | undefined;
             
