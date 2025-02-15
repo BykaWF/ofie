@@ -21,7 +21,14 @@ export async function getData(): Promise<Task[]> {
       label: "Home",
       title: "Lunch",
       status:"In Progress",
-      priority:"High"
+      priority:"Low"
+    },
+    {
+      id: "728ed52f",
+      label: "Home",
+      title: "Lunch",
+      status:"In Progress",
+      priority:"Medium"
     },
     // ...
   ]

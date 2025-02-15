@@ -1,6 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
+import {ArrowUp, ArrowRight, ArrowDown} from "lucide-react"
 
 export type Task = {
     id:string
@@ -17,6 +18,10 @@ export const columns : ColumnDef<Task>[] = [
         header:"ID"
     },
     {
+        accessorKey:"label",
+        header: "Label"
+    },
+    {
         accessorKey:"title",
         header:"Title"
     },
@@ -26,7 +31,30 @@ export const columns : ColumnDef<Task>[] = [
     },
     {
         accessorKey:"priority",
-        header:"Priority"
+        header:"Priority",
+        cell: ({row}) => {
+            const priority = row.getValue("priority");
+            let arrowIcon;
+            const size = 16;
+            
+            switch (priority){
+                case "High":
+                    arrowIcon = <ArrowUp size={size}/>
+                    break;
+                case "Medium":
+                    arrowIcon = <ArrowRight size={size}/>
+                    break;
+                case "Low":
+                    arrowIcon = <ArrowDown size={size}/>
+            }
+
+            return(
+                <div className="flex items-center gap-2">
+                    {arrowIcon}
+                    <span>{row.getValue("priority")}</span>
+                </div>
+            )
+        }
     },
     {
         accessorKey:"label",
