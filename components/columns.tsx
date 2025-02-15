@@ -56,8 +56,4 @@ export const columns : ColumnDef<Task>[] = [
             )
         }
     },
-    {
-        accessorKey:"label",
-        header:"Label"
-    }
 ]
