@@ -3,7 +3,18 @@
 import { ColumnDef } from "@tanstack/react-table"
 import {ArrowUp, ArrowRight, ArrowDown, Timer, CircleOff, CircleHelp, Circle, CircleCheckBig, MoreHorizontal,} from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
+import React from "react"
 
 export type Task = {
     id:string
@@ -110,4 +121,39 @@ export const columns : ColumnDef<Task>[] = [
             )
         }
     },
+
+    {
+        id:"actions",
+        cell:({row}) =>{
+            const task = row.original;
+            const label = task.label as string
+            const [position, setPosition] = React.useState(label)
+
+            return(
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal className="h-4 w-4"/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    {/* TODO add function here to edit, create copy, Delete */}
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem
+                            onClick={() => navigator.clipboard.writeText(task.id)}
+                        >
+                            Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            Make a copy
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator/>
+                        <DropdownMenuItem>
+                            Delete
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }
+    }
 ]
