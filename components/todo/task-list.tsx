@@ -9,15 +9,15 @@ export default async function TaskList(){
     const data = await getData();
     const srcImg = TaskImage;
     return(
-        <div className="container p-6">
-            <div className="w-full">
+        <div className="w-full p-6">
+            {/* <div className="w-[300px] h-[200px]">
                 <AspectRatio ratio={16 / 9}>
                     <Image 
                         src={srcImg}
                         alt="Image" 
                         className="rounded-md object-cover" />
                 </AspectRatio>
-            </div>
+            </div> */}
             <Card
                 className="overflow-hidden rounded-[0.5rem] border bg-background shadow"
             >
