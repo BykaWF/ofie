@@ -76,6 +76,7 @@ export function DataTable<TData, TValue>({
     //TODO add filter by status and Priority
     return (
         <div>
+            {/* Filter part and View part */}
             <div className="flex items-center py-4">
                 <Input
                     placeholder="Filter title..."
@@ -167,6 +168,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
+            {/* Bottom part */}
             <div className="flex items-center justify-between mt-4 px-2">
                 <div className="flex-1 text-sm text-muted-foreground">
                     {table.getFilteredSelectedRowModel().rows.length} of{" "}

@@ -9,7 +9,7 @@ export default async function TaskList(){
     const data = await getData();
     const srcImg = TaskImage;
     return(
-        <div className="w-full p-6">
+        <div className="w-full p-6 pt-0">
             {/* <div className="w-[300px] h-[200px]">
                 <AspectRatio ratio={16 / 9}>
                     <Image 
