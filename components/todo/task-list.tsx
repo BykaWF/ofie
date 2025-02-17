@@ -7,15 +7,20 @@ export default async function TaskList(){
     const data = await getData();
     
     return(
-        <Card>
-            <CardHeader>
-                <CardTitle>Task List</CardTitle>
-                <CardDescription>Here's a list of your tasks</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <DataTable columns={columns} data={data}/>
-            </CardContent>
+        <div className="container p-6">
+            <Card
+                className="overflow-hidden rounded-[0.5rem] border bg-background shadow"
+            >
+                <CardHeader>
+                    <CardTitle>Task List</CardTitle>
+                    <CardDescription>Here's a list of your tasks</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <DataTable columns={columns} data={data}/>
+                </CardContent>
 
-        </Card>
+            </Card>
+        </div>
+        
     )
 }
