@@ -20,14 +20,14 @@ export async function getData(): Promise<Task[]> {
       id: "728ed52f",
       label: "Side-Project",
       title: "Build todo list",
-      status:"Backlog",
+      status:"Done",
       priority:"Low"
     },
     {
       id: "728ed52f",
       label: "Side-Project",
       title: "Lunch",
-      status:"Done",
+      status:"Todo",
       priority:"Medium"
     },
     // ...

@@ -32,7 +32,7 @@ export type Task = {
     id:string
     label: "Home" | "Work" | "Sport" | "Side-Project"
     title:string
-    status: "In Progress" | "Todo" | "Canceled" | "Done" | "Backlog"
+    status: "In Progress" | "Todo" |"Done"
     priority: "Low" | "Medium" | "High"
 
 }
@@ -129,7 +129,7 @@ export const columns : ColumnDef<Task>[] = [
             )
         },
         cell:({row}) =>{
-            const status = row.getValue("status") as "In Progress" | "Todo" | "Canceled" | "Done" | "Backlog"| undefined;
+            const status = row.getValue("status") as "In Progress" | "Todo" | "Done";
             const size = 16;
             const statusIcon = (()=>{
                 switch(status){
@@ -137,12 +137,8 @@ export const columns : ColumnDef<Task>[] = [
                         return <Timer size={size}/>;
                     case "Done":
                         return <CircleCheckBig size={size}/>;
-                    case "Canceled":
-                        return <CircleOff size={size}/>
                     case "Todo":
                         return <Circle size={size}/>
-                    case "Backlog":
-                        return <CircleHelp size={size}/>
                     default:
                         return null;       
                 }
