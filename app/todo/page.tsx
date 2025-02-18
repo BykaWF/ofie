@@ -4,13 +4,17 @@ import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ChartSpline } from "lucide-react";
 import React from "react";
+import { Card } from "@/components/ui/card";
 
 export default function Page() {
     const progress = 33;
     
     return (
         <div >
-           <div className="flex items-center gap-x-4 p-6 w-full">
+            <Card
+                className="overflow-hidden rounded-[0.5rem] border bg-background shadow m-6 mb-3"
+            >
+             <div className="flex items-center gap-x-4 p-6 w-full">
                 <div className="w-8 flex-none">
                     <ChartSpline />
                 </div>
@@ -18,7 +22,9 @@ export default function Page() {
                 <div className="flex-1">
                     <h6>{progress}%</h6>
                 </div>
-           </div>
+           </div>      
+            </Card>
+          
             <Tabs defaultValue="overall" >
                 <TabsList className="ml-[22px]">
                     <TabsTrigger value="overall">Overall</TabsTrigger>

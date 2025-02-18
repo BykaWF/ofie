@@ -33,6 +33,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+
+
 import { ChevronRight, ChevronLeft, Settings2, ChevronsRight, ChevronsLeft } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 
@@ -54,6 +56,13 @@ export function DataTable<TData, TValue>({
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
         
     const [rowSelection, setRowSelection] = React.useState({})
+    const [sheetOpen, setSheetOpen] = React.useState<boolean>(false);
+
+    
+    const triggerSheet = () => {
+        setSheetOpen(true);
+    };
+
 
     const table = useReactTable({
         data,

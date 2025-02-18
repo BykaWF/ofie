@@ -27,6 +27,20 @@ import {
 } from "@/components/ui/dropdown-menu"
 import React from "react"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 
 export type Task = {
     id:string
@@ -34,7 +48,9 @@ export type Task = {
     title:string
     status: "In Progress" | "Todo" |"Done"
     priority: "Low" | "Medium" | "High"
-
+    description?:any // consider json format
+    dueDate?: Date;
+    reminderDate?: Date;
 }
 
 
@@ -86,7 +102,7 @@ export const columns : ColumnDef<Task>[] = [
 
             return(
                 <div className="flex items-center">
-                   <Badge variant="outline">{label}</Badge>
+                   <Badge >{label}</Badge>
                 </div>
             )
         }
@@ -201,9 +217,17 @@ export const columns : ColumnDef<Task>[] = [
             const task = row.original;
             const label = task.label as string
             const [position, setPosition] = React.useState(label)
-
+            const [sheetOpen, setSheetOpen] = React.useState<boolean>(false);
+            
+                
+            const triggerSheet = () => {
+                setSheetOpen(true);
+            };
+            
             return(
-                <DropdownMenu>
+                <div>
+                    <div>
+                    <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="h-8 w-8 p-0">
                             <span className="sr-only">Open menu</span>
@@ -211,9 +235,11 @@ export const columns : ColumnDef<Task>[] = [
                         </Button>
                     </DropdownMenuTrigger>
                     {/* TODO add function here to edit, create copy, Delete */}
+
+                    {/* add open sheet here after a click */}
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(task.id)}
+                            onClick={triggerSheet}
                         >
                             Edit
                         </DropdownMenuItem>
@@ -226,6 +252,29 @@ export const columns : ColumnDef<Task>[] = [
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
+                    </div>
+                     <Sheet
+                         open={sheetOpen}
+                         onOpenChange={() => {
+                           setSheetOpen(!sheetOpen);
+                           }}
+                    > 
+                        <SheetContent className="w-[800px] sm:w-[640px]">
+                            <SheetHeader>
+                                <SheetTitle>Edit Task</SheetTitle>
+                                <SheetDescription>
+                                    Make changes to your task here. Click save when you're done.
+                                </SheetDescription>
+                            </SheetHeader>
+                            {task.title}
+                            {/* add here your own component */}
+                            <Badge>
+                                {task.status}
+                            </Badge>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+                
             )
         }
     }
