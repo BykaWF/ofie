@@ -8,7 +8,7 @@ const items = [
     },
     {
         title: "Todo",
-        url:"/todo",
+        url:"/plan",
         icon:ListTodo,
     },
     {
@@ -22,7 +22,9 @@ const items = [
 
 export function AppSidebar(){
     return (
-        <Sidebar>
+        <Sidebar
+        collapsible="icon"
+        >
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Offie</SidebarGroupLabel>
