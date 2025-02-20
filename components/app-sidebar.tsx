@@ -8,7 +8,7 @@ const items = [
     },
     {
         title: "Todo",
-        url:"/todo",
+        url:"/plan",
         icon:ListTodo,
     },
     {

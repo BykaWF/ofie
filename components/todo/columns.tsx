@@ -40,17 +40,22 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Card } from "../ui/card"
+import EditPannel from "../task-view"
+import TaskView from "../task-view"
 
 
 export type Task = {
     id:string
     label: "Home" | "Work" | "Sport" | "Side-Project"
+    username:string
     title:string
     status: "In Progress" | "Todo" |"Done"
     priority: "Low" | "Medium" | "High"
-    description?:any // consider json format
+    description?:any
     dueDate?: Date;
     reminderDate?: Date;
+    avatarUrl: string;
 }
 
 
@@ -259,18 +264,14 @@ export const columns : ColumnDef<Task>[] = [
                            setSheetOpen(!sheetOpen);
                            }}
                     > 
-                        <SheetContent className="w-[800px] sm:w-[640px]">
+                        <SheetContent className="w-full sm:max-w-5xl">
                             <SheetHeader>
                                 <SheetTitle>Edit Task</SheetTitle>
                                 <SheetDescription>
-                                    Make changes to your task here. Click save when you're done.
+                                    Make changes to your task here.
                                 </SheetDescription>
                             </SheetHeader>
-                            {task.title}
-                            {/* add here your own component */}
-                            <Badge>
-                                {task.status}
-                            </Badge>
+                                <TaskView task={task}/>
                         </SheetContent>
                     </Sheet>
                 </div>
